@@ -1,0 +1,35 @@
+{
+  "name": "calculator",
+  "version": "0.0.0",
+  "description": "A fully tested calculator application",
+  "type": "module",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donny-c-1/calculator.git"
+  },
+  "keywords": [
+    "jest",
+    "parcel",
+    "calculator",
+    "javascript"
+  ],
+  "author": "Donny C",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/donny-c-1/calculator/issues"
+  },
+  "homepage": "https://github.com/donny-c-1/calculator#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "parcel": "^2.14.2"
+  }
+}
