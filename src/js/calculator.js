@@ -1,7 +1,7 @@
 export class Calculator {
     constructor() {
-        this.firstOperand = 0;
-        this.secondOperand = 0;
+        this.firstOperand = null;
+        this.secondOperand = null;
         this.operator = "ADDITION";
         this.operations = new Map([
             ["ADDITION", this.add],
@@ -12,7 +12,8 @@ export class Calculator {
     }
 
     addOperand(n) {
-        this.secondOperand = Number(n);
+        this.secondOperand = "" + (this.secondOperand || "") + n;
+        return this.secondOperand;
     }
 
     addOperator(operator) {
@@ -23,7 +24,16 @@ export class Calculator {
 
     calculate() {
         let operation = this.operations.get(this.operator);
-        return operation(this.firstOperand, this.secondOperand);
+        let result = operation(Number(this.firstOperand), Number(this.secondOperand));
+        this.firstOperand = this.secondOperand;
+        this.secondOperand = result;
+        return result;
+    }
+
+    clear() {
+        this.firstOperand = null;
+        this.secondOperand = null;
+        return "0";
     }
 
     /**

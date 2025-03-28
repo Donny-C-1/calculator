@@ -5,13 +5,14 @@ export function setupEvents() {
     const operands = document.querySelectorAll("[data-id='operand']");
     const operators = document.querySelectorAll("[data-id='operator']");
     const equalElm = document.querySelector("[data-id='equals']");
+    const clearElm = document.querySelector("[data-id='clear']");
 
     operands.forEach(elm => {
         elm.addEventListener("click", function (e) {
             const value = e.currentTarget.dataset.value;
 
-            myCalc.addOperand(value);
-            updateDisplay(value);
+            const number = myCalc.addOperand(value);
+            updateDisplay(number);
         });
     });
 
@@ -25,6 +26,11 @@ export function setupEvents() {
 
     equalElm?.addEventListener("click", function (e) {
         const result = myCalc.calculate();
+        updateDisplay(result);
+    });
+
+    clearElm?.addEventListener("click", function (e) {
+        const result = myCalc.clear();
         updateDisplay(result);
     });
 }

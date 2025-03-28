@@ -30,4 +30,14 @@ describe("Basic Calculator Operations", () => {
         expect(() => calculator.divide("5", "2")).toThrow("Invalid input");
         expect(() => calculator.divide(NaN, NaN)).toThrow("Invalid input");
     });
+
+    test("Add an operand", () => {
+        calculator.addOperand(2);
+        let number = calculator.addOperand(7);
+        expect(number).toBe("27");
+        calculator.addOperand("4");
+        calculator.addOperand("5");
+        number = calculator.addOperand("6");
+        expect(number).toBe("27456");
+    });
 });
