@@ -5,8 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Calculator App</title>
     <meta name="author" content="Donny C"/>
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="module">
+        import { setupEvents } from "./js/app.js"
+        window.addEventListener("DOMContentLoaded", setupEvents);
+    </script>
 </head>
 <body>
-    <h1>A Calculator App</h1>
+    <div class="calculator">
+        <!-- <input type="text" id="display" disabled> -->
+        <div data-id="output" id="display"></div>
+        <div class="buttons">
+            <!-- Buttons for numbers and operations -->
+            <button data-id="operand" data-value="7">7</button>
+            <button data-id="operand" data-value="8">8</button>
+            <button data-id="operand" data-value="9">9</button>
+            <button data-id="operator" data-value="DIVISION">/</button>
+            <button data-id="operand" data-value="4">4</button>
+            <button data-id="operand" data-value="5">5</button>
+            <button data-id="operand" data-value="6">6</button>
+            <button data-id="operator" data-value="MULTIPLICATION">*</button>
+            <button data-id="operand" data-value="1">1</button>
+            <button data-id="operand" data-value="2">2</button>
+            <button data-id="operand" data-value="3">3</button>
+            <button data-id="operator" data-value="SUBTRACTION">-</button>
+            <button data-id="operand" data-value="0">0</button>
+            <button>.</button>
+            <button data-id="equals">=</button>
+            <button data-id="operator" data-value="ADDITION">+</button>
+            <button>√</button>
+            <button data-id="operator" data-value="">^</button>
+            <button>C</button>
+        </div>
+    </div>
 </body>
 </html>
