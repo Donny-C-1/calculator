@@ -1,0 +1,17 @@
+# Parcel files
+.parcel-cache
+
+# Test files
+coverage/
+
+# Build Files
+dist/
+
+# Desktop files
+desktop.ini
+
+# Environment files
+.env
+
+# Node Files
+node_modules/
