@@ -1,11 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lavenderblush;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    text-align: center;
+    font-family: Edwardian Script ITC;
+    color: rebeccapurple;
+    font-size: 1.5rem;
+    margin: 1rem;
+
+    h1 {
+        margin: 0;
+        padding: 0;
+    }
+
+}
+
+
+.calculator {
+    width: min(31.25rem, 90vw);
+    margin-inline: auto;
+    border: 1.25rem ridge lightblue;
+    border-radius: .5rem;
+    background-color: royalblue;
+    padding: 1rem;
+    font-size: .75rem;
+
+    @media screen and (min-width: 22rem) {
+        font-size: 1rem;
+    }
+
+    @media screen and (min-width: 32.5rem) {
+        font-size: 1.75rem;
+    }
+
+    & .display {
+        width: 100%;
+        padding: 1rem;
+        background-color: #f4f4f4;
+        border: .2rem solid black;
+        text-align: right;
+        margin-bottom: 1rem;
+    }
+
+    & .buttons {
+        display: flex;
+        flex-wrap: wrap;
+
+        & button {
+            --bg-color: #fff;
+            flex: 20%;
+            scale: .9;
+            display: grid;
+            place-items: center;
+            width: 100%;
+            aspect-ratio: 1;
+            font-size: inherit;
+            border: .2rem ridge black;
+            background-color: var(--bg-color);
+            border-radius: .5rem;
+            cursor: pointer;
+            transition: .3s ease;
+            
+            &.del {
+                --bg-color: tomato;
+            }
+            
+            &.calc {
+                --bg-color: green;
+            }
+            
+            &:hover {
+                background-color: color-mix(in srgb, var(--bg-color) 80%, black 20%);
+            }
+
+            &:active {
+                background-color: color-mix(in srgb, var(--bg-color) 80%, black 40%);
+            }
+        }
+    }
+}
+
+/* * {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: lavenderblush;
+}
+
+header {
+    text-align: center;
 }
 
 .calculator {
@@ -45,4 +141,4 @@ button {
 
 button:hover {
     background: #0056b3;
-}
+} */

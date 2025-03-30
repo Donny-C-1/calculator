@@ -58,6 +58,11 @@ export class Calculator {
         return this.displayValue;
     }
 
+    delete() {
+        this.displayValue = this.displayValue.slice(0, -1);
+        return this.displayValue;
+    }
+
     clear() {
         this.firstOperand = null;
         this.secondOperand = null;
@@ -67,6 +72,13 @@ export class Calculator {
         this.operator = null;
         this.prevOperator = null;
         this.waitingForOperand = false;
+        return this.displayValue;
+    }
+
+    squareRoot() {
+        const input = parseFloat(this.displayValue);
+        this.clear();
+        this.displayValue = String(Math.sqrt(input));
         return this.displayValue;
     }
 
