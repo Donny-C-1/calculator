@@ -20,7 +20,8 @@ export function setupEvents() {
         elm.addEventListener("click", function (e) {
             const value = e.currentTarget.dataset.value;
 
-            myCalc.addOperator(value);
+            const num = myCalc.addOperator(value);
+            updateDisplay(num);
         });
     });
 

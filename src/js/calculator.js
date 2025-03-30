@@ -1,8 +1,14 @@
 export class Calculator {
     constructor() {
+        this.displayValue = "0"; // Current value displayed
         this.firstOperand = null;
         this.secondOperand = null;
-        this.operator = "ADDITION";
+        this.operator = null; // The selected operator (+, -, *, /)
+        this.prevOperator = null;
+        this.prevOperand = null;
+        this.prevResult = null;
+        this.waitingForOperand = null;
+        this.waitingForSecondOperand = false;
         this.operations = new Map([
             ["ADDITION", this.add],
             ["SUBTRACTION", this.subtract],
@@ -11,29 +17,57 @@ export class Calculator {
         ]);
     }
 
-    addOperand(n) {
-        this.secondOperand = "" + (this.secondOperand || "") + n;
-        return this.secondOperand;
+    addOperand(digit) {
+        let currentInput = String(digit);
+        if (this.waitingForOperand) {
+            this.displayValue = currentInput === "." ? "0." : currentInput;
+            this.waitingForOperand = false;
+        } else {
+            this.displayValue = this.displayValue === "0" ? (currentInput === "." ? "0." : currentInput) : this.displayValue + currentInput;
+        }
+        return this.displayValue;
     }
 
     addOperator(operator) {
-        this.operator = operator.toUpperCase();
-        this.firstOperand = this.secondOperand;
-        this.secondOperand = 0;
+        if (!this.operations.has(operator)) {
+            throw new Error(`Invalid operator: ${operator} not supported`);
+        }
+        if (this.firstOperand && this.operator) {
+            this.firstOperand = this.calculate();
+        } else {
+            this.firstOperand = parseFloat(this.displayValue);
+        }
+        this.operator = operator;
+        this.waitingForOperand = true;
+        return this.displayValue;
     }
 
     calculate() {
-        let operation = this.operations.get(this.operator);
-        let result = operation(Number(this.firstOperand), Number(this.secondOperand));
-        this.firstOperand = this.secondOperand;
-        this.secondOperand = result;
-        return result;
+        if (this.operator) {
+            const operation = this.operations.get(this.operator);
+            this.secondOperand = parseFloat(this.displayValue);
+            this.displayValue = String(operation(this.firstOperand, parseFloat(this.displayValue)));
+            this.prevOperator = this.operator;
+            this.operator = null;
+            this.waitingForOperand = true;
+        } else if (this.waitingForOperand) {
+            const operation = this.operations.get(this.prevOperator);
+            this.displayValue = String(operation(parseFloat(this.displayValue), this.secondOperand));
+        }
+        this.firstOperand = null;
+        return this.displayValue;
     }
 
     clear() {
         this.firstOperand = null;
         this.secondOperand = null;
-        return "0";
+        this.prevOperand = null;
+        this.prevResult = null;
+        this.displayValue = "0";
+        this.operator = null;
+        this.prevOperator = null;
+        this.waitingForOperand = false;
+        return this.displayValue;
     }
 
     /**
