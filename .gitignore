@@ -1,5 +1,6 @@
 # Parcel files
 .parcel-cache
+.cache
 
 # Test files
 coverage/
